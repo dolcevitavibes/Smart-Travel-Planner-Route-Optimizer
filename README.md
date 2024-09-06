@@ -10,15 +10,26 @@ app = Flask(__name__)
 TRIPADVISOR_API_KEY = os.getenv('TRIPADVISOR_API_KEY')
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 
-# Function to get recommendations from TripAdvisor
 def get_recommendations(destination_type, budget, time, travel_preferences):
-    api_url = 'https://api.tripadvisor.com/recommendations'  # Replace with actual endpoint
+    api_url = 'https://api.tripadvisor.com/recommendations'
     params = {
         'key': TRIPADVISOR_API_KEY,
         'destination_type': destination_type,
         'budget': budget,
         'time': time,
         'travel_preferences': travel_preferences
+    }
+    response = requests.get(api_url, params=params)
+    return response.json()
+
+def get_route(start_location, end_location, waypoints, mode='driving'):
+    api_url = 'https://maps.googleapis.com/maps/api/directions/json'
+    params = {
+        'origin': start_location,
+        'destination': end_location,
+        'waypoints': '|'.join(waypoints),
+        'mode': mode,
+        'key': GOOGLE_MAPS_API_KEY
     }
     response = requests.get(api_url, params=params)
     return response.json()
@@ -61,7 +72,6 @@ def route():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
 
 # Smart Travel Planner and Route Optimizer
 
