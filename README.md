@@ -103,7 +103,7 @@ if __name__ == '__main__':
 # Smart Travel Planner and Route Optimizer
 
 ## Summary
-This project is an AI-based travel planner that recommends destinations based on user preferences such as budget, time, and travel preferences. It also provides optimized routes between selected destinations using mock data.
+This project is an AI-based travel planner that recommends destinations based on user preferences such as budget, time, and travel preferences. It also provides optimized routes between selected destinations.
 
 ## Features
 - **Destination Recommendations**: Based on budget, vacation type, and time.
